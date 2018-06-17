@@ -2,6 +2,8 @@ ThisBuild / scalaVersion := "2.12.6"
 ThisBuild / organization := "me.ypan"
 
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5"
+val gigahorse = "com.eed3si9n" %% "gigahorse-okhttp" % "0.3.1"
+val playJson  = "com.typesafe.play" %% "play-json" % "2.6.9"
 
 lazy val hello = (project in file("."))
   .aggregate(helloCore)
@@ -14,6 +16,6 @@ lazy val hello = (project in file("."))
 lazy val helloCore = (project in file("core"))
   .settings(
     name := "Hello Core",
-    libraryDependencies += "com.eed3si9n" %% "gigahorse-okhttp" % "0.3.1",
+    libraryDependencies ++= Seq(gigahorse, playJson),
     libraryDependencies += scalaTest % Test,
   )
